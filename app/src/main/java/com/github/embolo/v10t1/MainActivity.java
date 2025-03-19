@@ -1,6 +1,8 @@
 package com.github.embolo.v10t1;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,4 +23,13 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
+    public void switchToSearchActivity(View view) {
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+    public void switchToListInfoActivity(View view) {
+        Intent intent = new Intent(this, ListInfoActivity.class);
+        startActivity(intent);
+    }
+
 }

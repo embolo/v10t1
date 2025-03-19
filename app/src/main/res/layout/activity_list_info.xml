@@ -7,4 +7,40 @@
     android:layout_height="match_parent"
     tools:context=".ListInfoActivity">
 
+    <TextView
+        android:id="@+id/CityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="145dp"
+        android:text="CityText"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/YearText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YearText"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/CarInfoText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CityText" />
+
+    <TextView
+        android:id="@+id/CarInfoText"
+        android:layout_width="248dp"
+        android:layout_height="393dp"
+        android:text="CarInfoText"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/YearText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

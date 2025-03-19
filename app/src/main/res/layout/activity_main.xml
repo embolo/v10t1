@@ -7,13 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/SearchActivityButton"
+        android:layout_width="185dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="76dp"
+        android:onClick="switchToSearchActivity"
+        android:text="Hae kaupungin \nautojen määrä"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleText" />
+
+    <Button
+        android:id="@+id/ListInfoActivityButton"
+        android:layout_width="185dp"
+        android:layout_height="100dp"
+        android:onClick="switchToListInfoActivity"
+        android:text="Listaa tiedot"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SearchActivityButton"
+        app:layout_constraintVertical_bias="0.110000014" />
+
     <TextView
+        android:id="@+id/TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:shadowColor="#000000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="2"
+        android:text="Autohakusovellus"
+        android:textColor="#9136A4"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

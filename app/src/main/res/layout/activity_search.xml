@@ -7,4 +7,53 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
+    <EditText
+        android:id="@+id/CityNameEdit"
+        android:layout_width="233dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:hint="Syötä kaupunki"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/YearEdit"
+        android:layout_width="228dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="72dp"
+        android:ems="10"
+        android:hint="Syötä vuosiluku"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CityNameEdit" />
+
+    <Button
+        android:id="@+id/SearchButton"
+        android:layout_width="170dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="100dp"
+        android:onClick="getDataButton"
+        android:text="Hae tiedot"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/YearEdit" />
+
+    <Button
+        android:id="@+id/ListInfoActivityButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="switchToListInfoActivity"
+        android:text="Siirry tietoihin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SearchButton"
+        app:layout_constraintVertical_bias="0.81" />
 </androidx.constraintlayout.widget.ConstraintLayout>
