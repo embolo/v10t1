@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -21,6 +22,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class SearchActivity extends AppCompatActivity {
     private EditText CityNameEdit;
@@ -55,27 +58,27 @@ public class SearchActivity extends AppCompatActivity {
             e.printStackTrace();
             return;
         }
-        getData(this, city, year);
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                getData(SearchActivity.this, city, year);
+            }
+        });
+
     }
     private void getData(Context context, String city, int year) {
 
-        // taulukko
-        // https://pxdata.stat.fi/PxWeb/api/v1/fi/StatFin/mkan/statfin_mkan_pxt_11ic.px
-
-
         ObjectMapper objectMapper = new ObjectMapper();
 
-
         JsonNode areas = null;
-
 
         try {
             areas = objectMapper.readTree(new URL("https://pxdata.stat.fi/PxWeb/api/v1/fi/StatFin/mkan/statfin_mkan_pxt_11ic.px"));
         } catch (Exception e) {
             e.printStackTrace();
-            return;
-        }
-        //Log.println(Log.INFO,"areas", areas.toString());
+            return; }
 
         ArrayList<String> keys = new ArrayList<>();
         ArrayList<String> values = new ArrayList<>();
