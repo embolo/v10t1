@@ -61,6 +61,7 @@ public class SearchActivity extends AppCompatActivity {
     public void getDataButton(View view) {
         String city;
         int year;
+        StatusText.setText("Haetaan");
 
         try {
             city = String.valueOf(CityNameEdit.getText());
@@ -93,10 +94,10 @@ public class SearchActivity extends AppCompatActivity {
         ArrayList<String> keys = new ArrayList<>();
         ArrayList<String> values = new ArrayList<>();
 
-        for (JsonNode node : areas.get("variables").get(1).get("values")) {
+        for (JsonNode node : areas.get("variables").get(0).get("values")) {
             values.add(node.asText());
         }
-        for (JsonNode node : areas.get("variables").get(1).get("valueTexts")) {
+        for (JsonNode node : areas.get("variables").get(0).get("valueTexts")) {
             keys.add(node.asText());
         }
 
@@ -109,9 +110,10 @@ public class SearchActivity extends AppCompatActivity {
         try {
             cityCode = municipalityCodes.get(city);
         } catch (Exception e) {
-            runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkiä ei löytynyt"));
+            runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt"));
             return;
         }
+
 
         try {
             URL url = new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/mkan/statfin_mkan_pxt_11ic.px");
@@ -132,33 +134,33 @@ public class SearchActivity extends AppCompatActivity {
             OutputStream os = connection.getOutputStream();
             os.write(input, 0, input.length);
 
+
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
+            Log.d("aa","aaaaaaaa");
             StringBuilder response = new StringBuilder();
 
             String line;
             while ((line = br.readLine()) != null) {
                 response.append(line.trim());
             }
+
             JsonNode jsonResponse = objectMapper.readTree(response.toString());
-
-
-            Log.d("json", jsonResponse.toString());
-
-
+            os.close();
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            runOnUiThread(() -> StatusText.setText("Haku epäonnistui, virhe"));
+            runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt"));
         } catch (ProtocolException e) {
             e.printStackTrace();
-            runOnUiThread(() -> StatusText.setText("Haku epäonnistui, virhe"));
+            runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt"));
         } catch (IOException e) {
             e.printStackTrace();
-            runOnUiThread(() -> StatusText.setText("Haku epäonnistui, virhe"));
+            runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt"));
         } catch (Exception e) {
             e.printStackTrace();
-            runOnUiThread(() -> StatusText.setText("Haku epäonnistui, virhe"));
+            runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt"));
         }
 
+        runOnUiThread(() -> StatusText.setText("Haku onnistui"));
 
         // api
         // https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/mkan/statfin_mkan_pxt_11ic.px
