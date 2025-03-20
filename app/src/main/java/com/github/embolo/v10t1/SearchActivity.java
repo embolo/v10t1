@@ -35,6 +35,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class SearchActivity extends AppCompatActivity {
+    private CarDataStorage carDataStorage;
     private EditText CityNameEdit;
     private EditText YearEdit;
     private TextView StatusText;
@@ -114,7 +115,7 @@ public class SearchActivity extends AppCompatActivity {
             return;
         }
 
-
+        JsonNode jsonResponse;
         try {
             URL url = new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/mkan/statfin_mkan_pxt_11ic.px");
 
@@ -136,7 +137,6 @@ public class SearchActivity extends AppCompatActivity {
 
 
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
-            Log.d("aa","aaaaaaaa");
             StringBuilder response = new StringBuilder();
 
             String line;
@@ -144,26 +144,35 @@ public class SearchActivity extends AppCompatActivity {
                 response.append(line.trim());
             }
 
-            JsonNode jsonResponse = objectMapper.readTree(response.toString());
+            jsonResponse = objectMapper.readTree(response.toString());
             os.close();
         } catch (MalformedURLException e) {
             e.printStackTrace();
             runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt"));
+            return;
         } catch (ProtocolException e) {
             e.printStackTrace();
             runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt"));
+            return;
         } catch (IOException e) {
             e.printStackTrace();
             runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt"));
+            return;
         } catch (Exception e) {
             e.printStackTrace();
             runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt"));
+            return;
         }
-
         runOnUiThread(() -> StatusText.setText("Haku onnistui"));
 
-        // api
-        // https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/mkan/statfin_mkan_pxt_11ic.px
+        carDataStorage = CarDataStorage.getInstance();
+        carDataStorage.clearData();
+
+        jsonResponse.get("query").get(1).get("values").get("01");
+        /*for (int i = 0; i < 5; i++) {
+            jsonResponse.get("query").get(1).get("values").get(01);
+        }*/
+        //CarData carData = new CarData()
 
 
     }
