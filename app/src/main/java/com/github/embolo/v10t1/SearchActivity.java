@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -69,9 +70,7 @@ public class SearchActivity extends AppCompatActivity {
 
     }
     private void getData(Context context, String city, int year) {
-
         ObjectMapper objectMapper = new ObjectMapper();
-
         JsonNode areas = null;
 
         try {
@@ -83,8 +82,16 @@ public class SearchActivity extends AppCompatActivity {
         ArrayList<String> keys = new ArrayList<>();
         ArrayList<String> values = new ArrayList<>();
 
-        for (JsonNode node : areas.get("variables").get(1).get("values"));
-        for (JsonNode node : areas.get("variables").get(1).get("valueTexts"));
+        for (JsonNode node : areas.get("variables").get(1).get("values")) {
+            values.add(node.asText()); }
+        for (JsonNode node : areas.get("variables").get(1).get("valueTexts")) {
+            keys.add(node.asText()); }
+
+        HashMap<String, String> municipalityCodes = new HashMap<>();
+
+        for(int i = 0; i < keys.size(); i++) {
+            municipalityCodes.put(keys.get(i), values.get(i)); }
+        int cityCode = Integer.parseInt(municipalityCodes.get(city));
 
         // api
         // https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/mkan/statfin_mkan_pxt_11ic.px
