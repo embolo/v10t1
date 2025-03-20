@@ -1,0 +1,47 @@
+{
+  "query": [
+    {
+      "code": "Alue",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "KU049"
+        ]
+      }
+    },
+    {
+      "code": "Ajoneuvoluokka",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05"
+        ]
+      }
+    },
+    {
+      "code": "Liikennekäyttö",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "0"
+        ]
+      }
+    },
+    {
+      "code": "Vuosi",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "2022"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}

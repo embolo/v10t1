@@ -36,11 +36,12 @@
         android:id="@+id/SearchButton"
         android:layout_width="170dp"
         android:layout_height="90dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="176dp"
         android:onClick="getDataButton"
         android:text="Hae tiedot"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/YearEdit" />
 
@@ -56,4 +57,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SearchButton"
         app:layout_constraintVertical_bias="0.81" />
+
+    <TextView
+        android:id="@+id/StatusText"
+        android:layout_width="216dp"
+        android:layout_height="127dp"
+        android:text="muu"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/SearchButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/YearEdit" />
 </androidx.constraintlayout.widget.ConstraintLayout>
