@@ -62,7 +62,6 @@
         android:id="@+id/StatusText"
         android:layout_width="216dp"
         android:layout_height="127dp"
-        android:text="muu"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/SearchButton"
         app:layout_constraintEnd_toEndOf="parent"

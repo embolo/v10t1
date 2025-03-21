@@ -60,17 +60,20 @@ public class SearchActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void getDataButton(View view) {
-        String city;
-        int year;
         StatusText.setText("Haetaan");
 
-        if (String.valueOf(CityNameEdit.getText()).isEmpty()) {
-            StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt");
+        String city;
+        int year;
+
+        if (String.valueOf(CityNameEdit.getText()).isEmpty() && (String.valueOf(YearEdit.getText()).isEmpty())) {
+            StatusText.setText("Haku epäonnistui, kaupunki sekä vuosiluku tyhjä");
             return;
 
         } else if (String.valueOf(YearEdit.getText()).isEmpty()) {
-            StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt");
+            StatusText.setText("Haku epäonnistui, vuosiluku tyhjä");
             return;
+        } else if (String.valueOf(CityNameEdit.getText()).isEmpty()) {
+            StatusText.setText("Haku epäonnistui, kaupunki tyhjä");
         }
         try {
             city = String.valueOf(CityNameEdit.getText());
