@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/CityText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="68dp"
         android:layout_marginStart="144dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="145dp"
@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/YearText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="204dp"
+        android:layout_height="40dp"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/CarInfoText"
         app:layout_constraintEnd_toEndOf="parent"
