@@ -64,6 +64,14 @@ public class SearchActivity extends AppCompatActivity {
         int year;
         StatusText.setText("Haetaan");
 
+        if (String.valueOf(CityNameEdit.getText()).isEmpty()) {
+            StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt");
+            return;
+
+        } else if (String.valueOf(YearEdit.getText()).isEmpty()) {
+            StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt");
+            return;
+        }
         try {
             city = String.valueOf(CityNameEdit.getText());
             year = Integer.parseInt(String.valueOf(YearEdit.getText()));
@@ -92,21 +100,20 @@ public class SearchActivity extends AppCompatActivity {
             return;
         }
 
-        ArrayList<String> keys = new ArrayList<>();
-        ArrayList<String> values = new ArrayList<>();
+        ArrayList<String> cityKeys = new ArrayList<>();
+        ArrayList<String> cityValues = new ArrayList<>();
 
         for (JsonNode node : areas.get("variables").get(0).get("values")) {
-            values.add(node.asText());
+            cityValues.add(node.asText());
         }
         for (JsonNode node : areas.get("variables").get(0).get("valueTexts")) {
-            keys.add(node.asText());
+            cityKeys.add(node.asText());
         }
-
         HashMap<String, String> municipalityCodes = new HashMap<>();
 
         String cityCode;
-        for (int i = 0; i < keys.size(); i++) {
-            municipalityCodes.put(keys.get(i), values.get(i));
+        for (int i = 0; i < cityKeys.size(); i++) {
+            municipalityCodes.put(cityKeys.get(i), cityValues.get(i));
         }
         try {
             cityCode = municipalityCodes.get(city);
@@ -163,17 +170,29 @@ public class SearchActivity extends AppCompatActivity {
             runOnUiThread(() -> StatusText.setText("Haku epäonnistui, kaupunkia ei löytynyt"));
             return;
         }
-        runOnUiThread(() -> StatusText.setText("Haku onnistui"));
-
         carDataStorage = CarDataStorage.getInstance();
         carDataStorage.clearData();
+        carDataStorage.setCity(city);
+        carDataStorage.setYear(year);
 
-        jsonResponse.get("query").get(1).get("values").get("01");
-        /*for (int i = 0; i < 5; i++) {
-            jsonResponse.get("query").get(1).get("values").get(01);
-        }*/
-        //CarData carData = new CarData()
+        ArrayList<String> carType = new ArrayList<>();
+        ArrayList<String> carAmount = new ArrayList<>();
 
+        for (JsonNode node : jsonResponse.get("dimension").get("Ajoneuvoluokka").get("category").get("label")) {
+            carType.add(node.asText());
+        }
+        for (JsonNode node : jsonResponse.get("value")) {
+            carAmount.add(node.asText());
+        }
+
+        HashMap<String, String> carTypeAmount = new HashMap<>();
+
+        for (int i = 0; i < carType.size(); i++) {
+
+            CarData carData = new CarData(carType.get(i), Integer.parseInt(carAmount.get(i)));
+            carDataStorage.addCarData(carData);
+        }
+        runOnUiThread(() -> StatusText.setText("Haku onnistui"));
 
     }
 }

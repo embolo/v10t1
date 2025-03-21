@@ -36,7 +36,7 @@
         android:id="@+id/CarInfoText"
         android:layout_width="248dp"
         android:layout_height="393dp"
-        android:text="TestiAuto"
+        android:text="TestiAuto\n400"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
