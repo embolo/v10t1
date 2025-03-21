@@ -65,10 +65,10 @@ public class SearchActivity extends AppCompatActivity {
         String city;
         int year;
 
+
         if (String.valueOf(CityNameEdit.getText()).isEmpty() && (String.valueOf(YearEdit.getText()).isEmpty())) {
             StatusText.setText("Haku epäonnistui, kaupunki sekä vuosiluku tyhjä");
             return;
-
         } else if (String.valueOf(YearEdit.getText()).isEmpty()) {
             StatusText.setText("Haku epäonnistui, vuosiluku tyhjä");
             return;
